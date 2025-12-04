@@ -33,7 +33,11 @@ extern "C" {
 #include "stm32h7rsxx_ll_tim.h"
 
 /* Following include file may be replaced with the BSP UBSPD PWR header file */
-#warning "Update for the series"
+#if defined(USE_STM32H7S78_DK)
+#include "stm32h7s78_discovery_usbpd_pwr.h"
+#else
+#include "usbpd_bsp_pwr.h"
+#endif /* USE_STM32H7S78_DK */
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
@@ -44,26 +48,34 @@ extern "C" {
       usbpd_hw.c
 -------------------------------------------------------------------------------*/
 
-/* defined used to configure function : USBPD_HW_GetUSPDInstance */
+/* Define used to configure function : USBPD_HW_GetUSPDInstance */
 #define UCPD_INSTANCE0 UCPD1
 
-/* defined used to configure function : USBPD_HW_Init_DMARxInstance,USBPD_HW_DeInit_DMARxInstance */
-#warning "Update for the series"
+/* Define used to configure function : USBPD_HW_Init_DMARxInstance,USBPD_HW_DeInit_DMARxInstance */
+#define UCPDDMA_INSTANCE0_CLOCKENABLE_RX  \
+  do                                      \
+  {                                       \
+    __HAL_RCC_GPDMA1_CLK_ENABLE();        \
+  } while(0)
 
 #define UCPDDMA_INSTANCE0_DMA_RX  GPDMA1
 
-#warning "Update for the series"
+#define UCPDDMA_INSTANCE0_REQUEST_RX   LL_GPDMA1_REQUEST_UCPD1_RX
 
 #define UCPDDMA_INSTANCE0_LL_CHANNEL_RX   LL_DMA_CHANNEL_5
 
 #define UCPDDMA_INSTANCE0_CHANNEL_RX   GPDMA1_Channel5
 
-/* defined used to configure function : USBPD_HW_Init_DMATxInstance, USBPD_HW_DeInit_DMATxInstance */
-#warning "Update for the series"
+/* Define used to configure function : USBPD_HW_Init_DMATxInstance, USBPD_HW_DeInit_DMATxInstance */
+#define UCPDDMA_INSTANCE0_CLOCKENABLE_TX  \
+  do                                      \
+  {                                       \
+    __HAL_RCC_GPDMA1_CLK_ENABLE();        \
+  } while(0)
 
 #define UCPDDMA_INSTANCE0_DMA_TX  GPDMA1
 
-#warning "Update for the series"
+#define UCPDDMA_INSTANCE0_REQUEST_TX   LL_GPDMA1_REQUEST_UCPD1_TX
 
 #define UCPDDMA_INSTANCE0_LL_CHANNEL_TX   LL_DMA_CHANNEL_3
 
@@ -73,18 +85,12 @@ extern "C" {
 #define UCPDFRS_INSTANCE0_FRSCC1                                                      \
   do                                                                                  \
   {                                                                                   \
-    LL_AHB4_GRP1_EnableClock(LL_AHB4_GRP1_PERIPH_GPIOA);                                                       \
-    LL_GPIO_SetPinMode(GPIOF, LL_GPIO_PIN_5, LL_GPIO_MODE_ALTERNATE);          \
-    LL_GPIO_SetAFPin_0_7(GPIOF, LL_GPIO_PIN_5, LL_GPIO_AF_6);   \
+    LL_AHB4_GRP1_EnableClock(LL_AHB4_GRP1_PERIPH_GPIOA);                              \
+    LL_GPIO_SetPinMode(GPIOF, LL_GPIO_PIN_5, LL_GPIO_MODE_ALTERNATE);                \
+    LL_GPIO_SetAFPin_0_7(GPIOF, LL_GPIO_PIN_5, LL_GPIO_AF_6);                       \
   } while(0)
 
-#define UCPDFRS_INSTANCE0_FRSCC2                                                      \
-  do                                                                                  \
-  {                                                                                   \
-    LL_AHB4_GRP1_EnableClock(LL_AHB4_GRP1_PERIPH_GPIOC);                                                       \
-    LL_GPIO_SetPinMode(GPIOD, LL_GPIO_PIN_13, LL_GPIO_MODE_ALTERNATE);          \
-    LL_GPIO_SetAFPin_0_7(GPIOD, LL_GPIO_PIN_13, LL_GPIO_AF_6);   \
-  } while(0)
+#define UCPDFRS_INSTANCE0_FRSCC2    UCPDFRS_INSTANCE0_FRSCC1 /* Only one common FRSCC pin is available on this series */
 
 #define UCPD_INSTANCE0_ENABLEIRQ               \
   do                                           \
