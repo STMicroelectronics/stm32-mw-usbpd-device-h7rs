@@ -21,6 +21,34 @@ and Connector Specification, Revision 2.0 (August, 2019).
 
 # Update History
 
+<label for="collapse-section7" aria-hidden="true">V1.4.0 / 08-May-2026</label>
+<div>
+
+## Main Changes
+
+  Headline
+  --------
+  SW_Security_Level.md file added
+
+## Known limitations
+
+  Outstanding bugs list : None
+
+  Requirements not met or planned in a forthcoming release : None
+
+## Supported Devices and boards
+
+  All STM32H7RSxx devices embedding USBPD IP
+
+## Backward compatibility
+
+  No compatibility break with previous version
+
+## Dependencies
+
+ This software release is compatible with USB-C Power Delivery Core Stack Library v5.4.1
+
+</div>
 <label for="collapse-section6" aria-hidden="true">V1.3.0 / 23-Jan-2026</label>
 <div>
 
@@ -49,7 +77,6 @@ and Connector Specification, Revision 2.0 (August, 2019).
  This software release is compatible with USB-C Power Delivery Core Stack Library v5.4.0
 
 </div>
-
 <label for="collapse-section5" aria-hidden="true">V1.2.2 / 25-Sep-2025</label>
 <div>
 

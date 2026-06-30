@@ -1,6 +1,6 @@
 # STM32H7RS Device-Specfic USB Power Delivery Middleware Library MCU Software Component
 
-![tag](https://img.shields.io/badge/tag-h7rs_v1.3.0-brightgreen.svg)
+![tag](https://img.shields.io/badge/tag-h7rs_v1.4.0-brightgreen.svg)
 
 ## Overview of the STM32Cube MCU offer on GitHub
 
